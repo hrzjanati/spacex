@@ -11,5 +11,30 @@ import Foundation
 extension Home {
     class ViewModel : ObservableObject {
         
+        private let cancelBag = CancelBag()
+        
+        init() {
+            fetchDataFromGeneralWebService()
+        }
+        
+        func fetchDataFromGeneralWebService() {
+            APIRequestProvider().fetchAll()
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    print("error")
+                } receiveValue: { result in
+                    switch result {
+                    case .success(let data):
+                        print(data)
+                    case .failure(let error):
+#if DEBUG
+                        print(error)
+#endif
+                    }
+                }
+                .store(in: cancelBag)
+            
+        }
+        
     }
 }

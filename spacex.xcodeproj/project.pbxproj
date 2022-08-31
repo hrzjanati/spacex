@@ -19,6 +19,11 @@
 		4F62124F28BF8C07000D68D3 /* ReachabilityNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62124E28BF8C07000D68D3 /* ReachabilityNetwork.swift */; };
 		4F62125128BF8C91000D68D3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62125028BF8C91000D68D3 /* Home.swift */; };
 		4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126628BF9689000D68D3 /* HomeViewModel.swift */; };
+		4F62126928BF981A000D68D3 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126828BF981A000D68D3 /* APIRouter.swift */; };
+		4F62126B28BF99A6000D68D3 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126A28BF99A6000D68D3 /* APIError.swift */; };
+		4F62126E28BF9AE9000D68D3 /* APIRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126D28BF9AE9000D68D3 /* APIRequestProvider.swift */; };
+		4F62127028BF9B3F000D68D3 /* Home+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126F28BF9B3F000D68D3 /* Home+Json.swift */; };
+		4F62127328BFA2CA000D68D3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4F62127228BFA2CA000D68D3 /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,10 @@
 		4F62124E28BF8C07000D68D3 /* ReachabilityNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityNetwork.swift; sourceTree = "<group>"; };
 		4F62125028BF8C91000D68D3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		4F62126628BF9689000D68D3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4F62126828BF981A000D68D3 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		4F62126A28BF99A6000D68D3 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		4F62126D28BF9AE9000D68D3 /* APIRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProvider.swift; sourceTree = "<group>"; };
+		4F62126F28BF9B3F000D68D3 /* Home+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Json.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F62124228BF8A69000D68D3 /* Alamofire in Frameworks */,
+				4F62127328BFA2CA000D68D3 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +185,7 @@
 		4F62124728BF8AD9000D68D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4F62126F28BF9B3F000D68D3 /* Home+Json.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,11 +201,22 @@
 		4F62124928BF8B6B000D68D3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				4F62124A28BF8B91000D68D3 /* APIConfiguration.swift */,
-				4F62124C28BF8BE2000D68D3 /* CancelBag.swift */,
+				4F62126D28BF9AE9000D68D3 /* APIRequestProvider.swift */,
 				4F62124E28BF8C07000D68D3 /* ReachabilityNetwork.swift */,
+				4F62124C28BF8BE2000D68D3 /* CancelBag.swift */,
+				4F62126C28BF99BD000D68D3 /* EndPoint */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		4F62126C28BF99BD000D68D3 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				4F62124A28BF8B91000D68D3 /* APIConfiguration.swift */,
+				4F62126828BF981A000D68D3 /* APIRouter.swift */,
+				4F62126A28BF99A6000D68D3 /* APIError.swift */,
+			);
+			path = EndPoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +237,7 @@
 			name = spacex;
 			packageProductDependencies = (
 				4F62124128BF8A69000D68D3 /* Alamofire */,
+				4F62127228BFA2CA000D68D3 /* Swinject */,
 			);
 			productName = spacex;
 			productReference = 4F62121328BF8858000D68D3 /* spacex.app */;
@@ -290,6 +313,7 @@
 			mainGroup = 4F62120A28BF8858000D68D3;
 			packageReferences = (
 				4F62124028BF8A69000D68D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				4F62127128BFA2CA000D68D3 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 4F62121428BF8858000D68D3 /* Products */;
 			projectDirPath = "";
@@ -333,10 +357,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F62126928BF981A000D68D3 /* APIRouter.swift in Sources */,
+				4F62126E28BF9AE9000D68D3 /* APIRequestProvider.swift in Sources */,
 				4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */,
 				4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
 				4F62125128BF8C91000D68D3 /* Home.swift in Sources */,
+				4F62127028BF9B3F000D68D3 /* Home+Json.swift in Sources */,
+				4F62126B28BF99A6000D68D3 /* APIError.swift in Sources */,
 				4F62124D28BF8BE2000D68D3 /* CancelBag.swift in Sources */,
 				4F62124F28BF8C07000D68D3 /* ReachabilityNetwork.swift in Sources */,
 			);
@@ -673,6 +701,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4F62127128BFA2CA000D68D3 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -680,6 +716,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4F62124028BF8A69000D68D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		4F62127228BFA2CA000D68D3 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F62127128BFA2CA000D68D3 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

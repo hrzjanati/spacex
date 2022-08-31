@@ -12,7 +12,6 @@ public protocol APIConfiguration: URLRequestConvertible {
     var method: HTTPMethod { get }
     var baseURL: String { get }
     var path: String { get }
-    var inter : Interceptor? { get }
     var parameters: Parameters? { get }
     func asURLRequest() throws -> URLRequest
 }

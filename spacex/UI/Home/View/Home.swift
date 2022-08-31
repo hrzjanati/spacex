@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Home: View {
+    
+    @StateObject private var vm = ViewModel()
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
