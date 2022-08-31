@@ -12,23 +12,27 @@ import SwiftUI
 public enum APIRouter: APIConfiguration {
     
     case capsules
-    
+    case launch
     
     public var method: HTTPMethod {
         switch self {
         case .capsules :
             return .get
+        case .launch :
+            return .post
         }
     }
     
     public var baseURL: String {
-        return "https://api.spacexdata.com/v3/"
+        return "https://api.spacexdata.com/"
     }
     
     public var path: String {
         switch self {
         case .capsules :
-            return "capsules"
+            return "v3/capsules"
+        case .launch :
+            return "v5/launches/query"
         }
     }
     
@@ -37,6 +41,8 @@ public enum APIRouter: APIConfiguration {
         switch self {
         case .capsules :
             return nil
+        case .launch :
+            return nil
         }
     }
     
@@ -44,15 +50,25 @@ public enum APIRouter: APIConfiguration {
         let urlWithPathValue = baseURL + path
         guard let url = URL(string: urlWithPathValue) else { throw APIError.invalidURL }
         var urlRequest = URLRequest(url: url)
-        
         switch self {
-            
-        case .capsules :
+        case .capsules , .launch:
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
+        
         }
         
-        
+        if let parameters = parameters {
+            switch self {
+                
+            case .capsules  :
+              return urlRequest
+                
+            case .launch :
+                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+                urlRequest.httpBody = jsonData
+            }
+        }
+   
         return urlRequest
     }
     

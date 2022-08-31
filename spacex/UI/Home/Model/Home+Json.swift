@@ -54,5 +54,3 @@ public enum TypeEnum: String, Codable {
     case dragon11 = "Dragon 1.1"
     case dragon20 = "Dragon 2.0"
 }
-
-typealias SpaceXCapsules = [SpaceXCapsule]

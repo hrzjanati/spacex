@@ -18,7 +18,7 @@ extension Home {
         }
         
         func fetchDataFromGeneralWebService() {
-            APIRequestProvider().fetchAll()
+            APIRequestProvider().launch()
                 .receive(on: DispatchQueue.main)
                 .sink { _ in
                     print("error")

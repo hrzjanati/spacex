@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5371D828BFE4E0009EEAD2 /* HomeLaunch+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */; };
 		4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62121628BF8858000D68D3 /* spacexApp.swift */; };
 		4F62121B28BF885A000D68D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F62121A28BF885A000D68D3 /* Assets.xcassets */; };
 		4F62121E28BF885A000D68D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F62121D28BF885A000D68D3 /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeLaunch+Json.swift"; sourceTree = "<group>"; };
 		4F62121328BF8858000D68D3 /* spacex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spacex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F62121628BF8858000D68D3 /* spacexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spacexApp.swift; sourceTree = "<group>"; };
 		4F62121A28BF885A000D68D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				4F62126F28BF9B3F000D68D3 /* Home+Json.swift */,
+				4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			files = (
 				4F62126928BF981A000D68D3 /* APIRouter.swift in Sources */,
 				4F62126E28BF9AE9000D68D3 /* APIRequestProvider.swift in Sources */,
+				4F5371D828BFE4E0009EEAD2 /* HomeLaunch+Json.swift in Sources */,
 				4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */,
 				4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
