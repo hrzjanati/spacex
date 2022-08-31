@@ -11,32 +11,32 @@ import SwiftUI
 
 public enum APIRouter: APIConfiguration {
     
-    case fetchAllData(_ parameters: [String: Any])
+    case capsules
     
     
     public var method: HTTPMethod {
         switch self {
-        case .fetchAllData :
-            return .post
+        case .capsules :
+            return .get
         }
     }
     
     public var baseURL: String {
-        return "https://api.spacexdata.com/v5/launches/query"
+        return "https://api.spacexdata.com/v3/"
     }
     
     public var path: String {
         switch self {
-        case .fetchAllData :
-            return ""
+        case .capsules :
+            return "capsules"
         }
     }
     
     
     public var parameters: Parameters? {
         switch self {
-        case .fetchAllData(let parameters) :
-            return parameters
+        case .capsules :
+            return nil
         }
     }
     
@@ -47,10 +47,9 @@ public enum APIRouter: APIConfiguration {
         
         switch self {
             
-        case .fetchAllData(_) :
+        case .capsules :
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            let jsonData = try? JSONSerialization.data(withJSONObject: parameters as Any)
-            urlRequest.httpBody = jsonData
+         
         }
         
         

@@ -13,7 +13,7 @@ import SwiftUI
 
 
 public protocol APISpaceXClinetProtocol: AnyObject {
-    func fetchAll() -> AnyPublisher<Result<SpaceX, AFError>, Never>
+    func fetchAll() -> AnyPublisher<Result<SpaceXCapsule, AFError>, Never>
 }
 
 public final class APIRequestProvider {
@@ -26,11 +26,10 @@ public final class APIRequestProvider {
 
 extension APIRequestProvider : APISpaceXClinetProtocol {
     
-    public func fetchAll() -> AnyPublisher<Result<SpaceX, AFError>, Never> {
-        let parameters: [String: Any] = ["" : ""]
+    public func fetchAll() -> AnyPublisher<Result<SpaceXCapsule, AFError>, Never> {
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .useDefaultKeys
-        return performCombineRequest(route: .fetchAllData(parameters))
+        return performCombineRequest(route: .capsules, decoder: jsonDecoder)
     }
     
     

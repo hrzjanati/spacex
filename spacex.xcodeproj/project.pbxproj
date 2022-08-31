@@ -116,6 +116,7 @@
 			children = (
 				4F62124328BF8AA9000D68D3 /* Resources */,
 				4F62124928BF8B6B000D68D3 /* Network */,
+				4F62127428BFA39B000D68D3 /* DI */,
 				4F62124428BF8AC1000D68D3 /* UI */,
 			);
 			path = spacex;
@@ -217,6 +218,13 @@
 				4F62126A28BF99A6000D68D3 /* APIError.swift */,
 			);
 			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		4F62127428BFA39B000D68D3 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
