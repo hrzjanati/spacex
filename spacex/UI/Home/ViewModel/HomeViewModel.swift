@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+extension Home {
+    class ViewModel : ObservableObject {
+        
+    }
+}
