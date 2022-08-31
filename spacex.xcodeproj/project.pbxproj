@@ -18,6 +18,7 @@
 		4F62124D28BF8BE2000D68D3 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62124C28BF8BE2000D68D3 /* CancelBag.swift */; };
 		4F62124F28BF8C07000D68D3 /* ReachabilityNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62124E28BF8C07000D68D3 /* ReachabilityNetwork.swift */; };
 		4F62125128BF8C91000D68D3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62125028BF8C91000D68D3 /* Home.swift */; };
+		4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126628BF9689000D68D3 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4F62124C28BF8BE2000D68D3 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
 		4F62124E28BF8C07000D68D3 /* ReachabilityNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityNetwork.swift; sourceTree = "<group>"; };
 		4F62125028BF8C91000D68D3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		4F62126628BF9689000D68D3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 		4F62124828BF8AE0000D68D3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4F62126628BF9689000D68D3 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */,
+				4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
 				4F62125128BF8C91000D68D3 /* Home.swift in Sources */,
 				4F62124D28BF8BE2000D68D3 /* CancelBag.swift in Sources */,
