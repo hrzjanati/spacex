@@ -11,7 +11,7 @@ import SwiftUI
 struct spacexApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Home()
         }
     }
 }
