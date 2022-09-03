@@ -19,7 +19,7 @@ public final class APIRequestProvider {
     let jsonDecoder = JSONDecoder()
   
     public func performCombineRequest<T: Decodable>(route: APIRouter,interceptor: RequestInterceptor? = nil, decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Result<T, AFError>, Never> {
-        return AF.request(route ).publishDecodable(type: T.self, decoder: decoder).result()
+        return AF.request(route).publishDecodable(type: T.self, decoder: decoder).result()
         
     }
 }
@@ -35,5 +35,5 @@ extension APIRequestProvider : APISpaceXClinetProtocol {
         jsonDecoder.keyDecodingStrategy = .useDefaultKeys
         return performCombineRequest(route: .launch, decoder: jsonDecoder)
     }
-    
+ 
 }

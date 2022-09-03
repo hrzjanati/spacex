@@ -44,14 +44,15 @@ struct Doc: Codable {
     let crew: [JSONAny]
     let ships, capsules, payloads: [String]
     let launchpad: Launchpad
-    let flightNumber: Int
-    let name, dateUTC: String
-    let dateUnix: Int
-    let dateLocal: Date
-    let datePrecision: DatePrecision
+    let flightNumber: Int?
+    let name, dateUTC: String?
+    let dateUnix: Int?
+    let dateLocal: String?
+    let datePrecision: DatePrecision?
     let upcoming: Bool
     let cores: [Core]
-    let autoUpdate, tbd: Bool
+    let autoUpdate: Bool?
+    let tbd: Bool
     let launchLibraryID: JSONNull?
     let id: String
 
@@ -74,20 +75,12 @@ struct Doc: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCore { response in
-//     if let core = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Core
 struct Core: Codable {
     let core: String
     let flight: Int
-    let gridfins, legs, reused, landingAttempt: Bool
+    let gridfins, legs, reused: Bool
+    let landingAttempt: Bool?
     let landingSuccess, landingType, landpad: JSONNull?
 
     enum CodingKeys: String, CodingKey {
@@ -103,30 +96,12 @@ enum DatePrecision: String, Codable {
     case hour = "hour"
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseFailure { response in
-//     if let failure = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Failure
 struct Failure: Codable {
     let time: Int
     let altitude: Int?
     let reason: String
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseFairings { response in
-//     if let fairings = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Fairings
 struct Fairings: Codable {
@@ -145,15 +120,6 @@ enum Launchpad: String, Codable {
     case the5E9E4502F5090995De566F86 = "5e9e4502f5090995de566f86"
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseLinks { response in
-//     if let links = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Links
 struct Links: Codable {
     let patch: Patch
@@ -161,7 +127,7 @@ struct Links: Codable {
     let flickr: Flickr
     let presskit: String?
     let webcast: String
-    let youtubeID: String
+    let youtubeID: String?
     let article: String
     let wikipedia: String
 
@@ -172,43 +138,14 @@ struct Links: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseFlickr { response in
-//     if let flickr = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Flickr
 struct Flickr: Codable {
     let small, original: [JSONAny]
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responsePatch { response in
-//     if let patch = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Patch
 struct Patch: Codable {
     let small, large: String
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseReddit { response in
-//     if let reddit = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Reddit
 struct Reddit: Codable {
     let campaign: JSONNull?
@@ -222,7 +159,6 @@ enum Rocket: String, Codable {
 }
 
 // MARK: - Helper functions for creating encoders and decoders
-
 func newJSONDecoder() -> JSONDecoder {
     let decoder = JSONDecoder()
     if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
@@ -238,33 +174,6 @@ func newJSONEncoder() -> JSONEncoder {
     }
     return encoder
 }
-
-// MARK: - Alamofire response handlers
-
-//extension DataRequest {
-//    public func decodableResponseSerializer<T: Decodable>() -> DataResponseSerializer<T> {
-//        return DataResponseSerializer { _, response, data, error in
-//            guard error == nil else { return .failure(error!) }
-//
-//            guard let data = data else {
-//                return .failure(AFError.responseSerializationFailed(reason: .inputDataNil))
-//            }
-//
-//            return Result { try newJSONDecoder().decode(T.self, from: data) }
-//        }
-//    }
-//
-//    @discardableResult
-//    public func responseDecodable<T: Decodable>(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<T>) -> Void) -> Self {
-//        return response(queue: queue!, responseSerializer: decodableResponseSerializer(), completionHandler: completionHandler)
-//    }
-//
-//    @discardableResult
-//    func responseSpaceXLaunch(queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<SpaceXLaunch>) -> Void) -> Self {
-//        return responseDecodable(queue: queue, completionHandler: completionHandler)
-//    }
-//}
-
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {

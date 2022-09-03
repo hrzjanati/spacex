@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Alamofire
 
 extension Home {
     class ViewModel : ObservableObject {

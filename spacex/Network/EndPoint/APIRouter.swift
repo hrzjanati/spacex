@@ -36,12 +36,11 @@ public enum APIRouter: APIConfiguration {
         }
     }
     
-    
     public var parameters: Parameters? {
         switch self {
-        case .capsules :
+        case .capsules:
             return nil
-        case .launch :
+        case .launch:
             return nil
         }
     }
@@ -50,28 +49,12 @@ public enum APIRouter: APIConfiguration {
         let urlWithPathValue = baseURL + path
         guard let url = URL(string: urlWithPathValue) else { throw APIError.invalidURL }
         var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
         switch self {
         case .capsules , .launch:
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         }
-        
-        if let parameters = parameters {
-            switch self {
-                
-            case .capsules  :
-              return urlRequest
-                
-            case .launch :
-                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
-                urlRequest.httpBody = jsonData
-            }
-        }
-   
         return urlRequest
     }
-    
-    
-
 }
