@@ -35,5 +35,11 @@ extension APIRequestProvider : APISpaceXClinetProtocol {
         jsonDecoder.keyDecodingStrategy = .useDefaultKeys
         return performCombineRequest(route: .launch, decoder: jsonDecoder)
     }
- 
+    
+    
+    public func launchHossine() -> AnyPublisher<Result<SpaceXLaunch, AFError>, Never> {
+        
+        jsonDecoder.keyDecodingStrategy = .useDefaultKeys
+        return AF.request("https://api.spacexdata.com/v5/launches/query", method: .post).publishDecodable(type: SpaceXLaunch.self, decoder: jsonDecoder).result()
+    }
 }

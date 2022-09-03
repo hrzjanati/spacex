@@ -7,9 +7,6 @@
 
 import Foundation
 
-import Foundation
-import Alamofire
-
 // MARK: - SpaceXLaunch
 public struct SpaceXLaunch: Codable {
     let docs: [Doc]
@@ -20,17 +17,8 @@ public struct SpaceXLaunch: Codable {
     let nextPage: Int
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseDoc { response in
-//     if let doc = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Doc
-struct Doc: Codable {
+struct Doc: Codable , Identifiable {
     let fairings: Fairings?
     let links: Links
     let staticFireDateUTC: String?
@@ -45,7 +33,7 @@ struct Doc: Codable {
     let ships, capsules, payloads: [String]
     let launchpad: Launchpad
     let flightNumber: Int?
-    let name, dateUTC: String?
+    var name, dateUTC: String?
     let dateUnix: Int?
     let dateLocal: String?
     let datePrecision: DatePrecision?
@@ -54,7 +42,7 @@ struct Doc: Codable {
     let autoUpdate: Bool?
     let tbd: Bool
     let launchLibraryID: JSONNull?
-    let id: String
+    let id = UUID()
 
     enum CodingKeys: String, CodingKey {
         case fairings, links

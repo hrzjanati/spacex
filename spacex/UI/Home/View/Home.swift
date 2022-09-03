@@ -9,11 +9,31 @@ import SwiftUI
 
 struct Home: View {
     
-    @StateObject private var vm = ViewModel()
+    @StateObject private var vm : ViewModel = Resolver.shared.resolve(ViewModel.self)
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+             List {
+                 ForEach(vm.docsModel) { launch in
+                     CellLaunch(name: launch.name ?? "Name is null" ,
+                                success: launch.success ,
+                                details: launch.details ?? "" ,
+                                smallImageLink: "\(launch.links.patch.small)")
+                 } // ForEach
+             }//List
+             .onAppear {
+                 vm.fetchDocs()
+             }// onAppear List
+            
+             .toolbar {
+                 ToolbarItem(placement: .principal) {
+                        Text("Launch")
+                         .font(.title)
+                 }
+             }
+        }//NavigationView
     }
+    
 }
 
 struct Home_Previews: PreviewProvider {

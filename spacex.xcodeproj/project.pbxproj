@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F48504428C358B60090AF64 /* DependecyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504328C358B60090AF64 /* DependecyInjector.swift */; };
+		4F48504728C35A5F0090AF64 /* HomeProvide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504628C35A5F0090AF64 /* HomeProvide.swift */; };
+		4F48504A28C363A80090AF64 /* CellLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504928C363A80090AF64 /* CellLaunch.swift */; };
+		4F48504D28C37B110090AF64 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4F48504C28C37B110090AF64 /* Kingfisher */; };
+		4F48505028C37B780090AF64 /* KFVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504F28C37B780090AF64 /* KFVIew.swift */; };
 		4F5371D828BFE4E0009EEAD2 /* HomeLaunch+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */; };
 		4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62121628BF8858000D68D3 /* spacexApp.swift */; };
 		4F62121B28BF885A000D68D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F62121A28BF885A000D68D3 /* Assets.xcassets */; };
@@ -45,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F48504328C358B60090AF64 /* DependecyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependecyInjector.swift; sourceTree = "<group>"; };
+		4F48504628C35A5F0090AF64 /* HomeProvide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvide.swift; sourceTree = "<group>"; };
+		4F48504928C363A80090AF64 /* CellLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellLaunch.swift; sourceTree = "<group>"; };
+		4F48504F28C37B780090AF64 /* KFVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KFVIew.swift; sourceTree = "<group>"; };
 		4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeLaunch+Json.swift"; sourceTree = "<group>"; };
 		4F62121328BF8858000D68D3 /* spacex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spacex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F62121628BF8858000D68D3 /* spacexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spacexApp.swift; sourceTree = "<group>"; };
@@ -71,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F48504D28C37B110090AF64 /* Kingfisher in Frameworks */,
 				4F62124228BF8A69000D68D3 /* Alamofire in Frameworks */,
 				4F62127328BFA2CA000D68D3 /* Swinject in Frameworks */,
 			);
@@ -93,6 +103,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F48504528C35A460090AF64 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				4F48504628C35A5F0090AF64 /* HomeProvide.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		4F48504828C363840090AF64 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				4F48504928C363A80090AF64 /* CellLaunch.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		4F48504E28C37B5E0090AF64 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4F48504F28C37B780090AF64 /* KFVIew.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		4F62120A28BF8858000D68D3 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +153,7 @@
 				4F62124328BF8AA9000D68D3 /* Resources */,
 				4F62124928BF8B6B000D68D3 /* Network */,
 				4F62127428BFA39B000D68D3 /* DI */,
+				4F48504E28C37B5E0090AF64 /* Utils */,
 				4F62124428BF8AC1000D68D3 /* UI */,
 			);
 			path = spacex;
@@ -173,6 +208,7 @@
 				4F62124628BF8AD4000D68D3 /* View */,
 				4F62124828BF8AE0000D68D3 /* ViewModel */,
 				4F62124728BF8AD9000D68D3 /* Model */,
+				4F48504528C35A460090AF64 /* DI */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -181,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				4F62125028BF8C91000D68D3 /* Home.swift */,
+				4F48504828C363840090AF64 /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,8 +225,8 @@
 		4F62124728BF8AD9000D68D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4F62126F28BF9B3F000D68D3 /* Home+Json.swift */,
 				4F5371D728BFE4E0009EEAD2 /* HomeLaunch+Json.swift */,
+				4F62126F28BF9B3F000D68D3 /* Home+Json.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,6 +263,7 @@
 		4F62127428BFA39B000D68D3 /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				4F48504328C358B60090AF64 /* DependecyInjector.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -249,6 +287,7 @@
 			packageProductDependencies = (
 				4F62124128BF8A69000D68D3 /* Alamofire */,
 				4F62127228BFA2CA000D68D3 /* Swinject */,
+				4F48504C28C37B110090AF64 /* Kingfisher */,
 			);
 			productName = spacex;
 			productReference = 4F62121328BF8858000D68D3 /* spacex.app */;
@@ -325,6 +364,7 @@
 			packageReferences = (
 				4F62124028BF8A69000D68D3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				4F62127128BFA2CA000D68D3 /* XCRemoteSwiftPackageReference "Swinject" */,
+				4F48504B28C37B110090AF64 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4F62121428BF8858000D68D3 /* Products */;
 			projectDirPath = "";
@@ -372,11 +412,15 @@
 				4F62126E28BF9AE9000D68D3 /* APIRequestProvider.swift in Sources */,
 				4F5371D828BFE4E0009EEAD2 /* HomeLaunch+Json.swift in Sources */,
 				4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */,
+				4F48504A28C363A80090AF64 /* CellLaunch.swift in Sources */,
+				4F48504728C35A5F0090AF64 /* HomeProvide.swift in Sources */,
 				4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */,
+				4F48505028C37B780090AF64 /* KFVIew.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
 				4F62125128BF8C91000D68D3 /* Home.swift in Sources */,
 				4F62127028BF9B3F000D68D3 /* Home+Json.swift in Sources */,
 				4F62126B28BF99A6000D68D3 /* APIError.swift in Sources */,
+				4F48504428C358B60090AF64 /* DependecyInjector.swift in Sources */,
 				4F62124D28BF8BE2000D68D3 /* CancelBag.swift in Sources */,
 				4F62124F28BF8C07000D68D3 /* ReachabilityNetwork.swift in Sources */,
 			);
@@ -705,6 +749,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4F48504B28C37B110090AF64 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		4F62124028BF8A69000D68D3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -724,6 +776,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4F48504C28C37B110090AF64 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F48504B28C37B110090AF64 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		4F62124128BF8A69000D68D3 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4F62124028BF8A69000D68D3 /* XCRemoteSwiftPackageReference "Alamofire" */;
