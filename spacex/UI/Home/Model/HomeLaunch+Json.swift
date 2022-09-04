@@ -33,7 +33,7 @@ struct Doc: Codable , Identifiable {
     let ships, capsules, payloads: [String]
     let launchpad: Launchpad
     let flightNumber: Int?
-    var name, dateUTC: String?
+    let name, dateUTC: String?
     let dateUnix: Int?
     let dateLocal: String?
     let datePrecision: DatePrecision?

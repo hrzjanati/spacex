@@ -32,14 +32,26 @@ extension APIRequestProvider : APISpaceXClinetProtocol {
     }
     
     public func launch() -> AnyPublisher<Result<SpaceXLaunch, AFError>, Never> {
+//        let page : [String:Any] = [
+//            "page" : 2
+//        ]
+        let parameters: [String: Any] = [
+            "options" : [
+                "page" : 1
+            ]
+        ]
         jsonDecoder.keyDecodingStrategy = .useDefaultKeys
-        return performCombineRequest(route: .launch, decoder: jsonDecoder)
+        return performCombineRequest(route: .launch(parameters), decoder: jsonDecoder)
     }
     
     
     public func launchHossine() -> AnyPublisher<Result<SpaceXLaunch, AFError>, Never> {
-        
+        let parameters: [String: [String : Int]] = [
+            "options" : [
+                "page" : 1
+            ]
+        ]
         jsonDecoder.keyDecodingStrategy = .useDefaultKeys
-        return AF.request("https://api.spacexdata.com/v5/launches/query", method: .post).publishDecodable(type: SpaceXLaunch.self, decoder: jsonDecoder).result()
+        return AF.request("https://api.spacexdata.com/v5/launches/query",method: .post, parameters: parameters,encoding: JSONEncoding.default).publishDecodable(type: SpaceXLaunch.self, decoder: jsonDecoder).result()
     }
 }

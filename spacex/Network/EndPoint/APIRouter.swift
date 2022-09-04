@@ -12,7 +12,7 @@ import SwiftUI
 public enum APIRouter: APIConfiguration {
     
     case capsules
-    case launch
+    case launch(_ parameters: [String: Any])
     
     public var method: HTTPMethod {
         switch self {
@@ -40,8 +40,8 @@ public enum APIRouter: APIConfiguration {
         switch self {
         case .capsules:
             return nil
-        case .launch:
-            return nil
+        case .launch(let parameters):
+            return parameters
         }
     }
     
@@ -53,8 +53,19 @@ public enum APIRouter: APIConfiguration {
         switch self {
         case .capsules , .launch:
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         }
+        
+        if let parameters = parameters {
+            switch self {
+            case .capsules:
+                return urlRequest
+                
+            case .launch(_):
+                let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+                urlRequest.httpBody = jsonData
+            }
+        }
+        
         return urlRequest
     }
 }
