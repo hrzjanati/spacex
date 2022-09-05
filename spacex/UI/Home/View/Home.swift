@@ -15,20 +15,30 @@ struct Home: View {
         NavigationView {
              List {
                  ForEach(vm.docsModel) { launch in
-                     CellLaunch(name: launch.name ?? "Name is null" ,
-                                success: launch.success ?? false,
-                                details: launch.details ?? "" ,
-                                smallImageLink: "\(launch.links.patch.small)")
+                     NavigationLink(destination: Details(name: launch.name ?? "Name is null", urlLargeImage: "\(launch.links.patch.large)", wikiLinkStr: "https://www.figma.com/file/7A9mC4aW7us8Gg583quCs0/PalPhone?node-id=97%3A20028")) {
+                         CellLaunch(name: launch.name ?? "Name is null" ,
+                                    success: launch.success ?? false,
+                                    details: launch.details ?? "" ,
+                                    smallImageLink: "\(launch.links.patch.small)",
+                                    flightNumber: "\(launch.flightNumber ?? 0)" ,
+                                    launchTime: launch.dateUTC ?? "null",
+                                    id: launch.id)
+                     }
+                     .buttonStyle(PlainButtonStyle())
                  } // ForEach
                  if vm.launchsListFull == false {
-                   Text("fetching some data ...")
+                     HStack {
+                         Spacer()
+                         ActivityIndicatorView(isAnimating: .constant(true), style: .large)
+                         Spacer()
+                     }
                      .onAppear {
                          vm.fetchDocs()
+                         let ids = CoreDataManager.shared.fetchBookMarkID()
+                         print(ids)
                      }
                  }
-                 
              }//List
-            
              .toolbar {
                  ToolbarItem(placement: .principal) {
                         Text("Launch")
@@ -46,32 +56,15 @@ struct Home_Previews: PreviewProvider {
     }
 }
 
-
-/*
-struct Members: View {
-    @ObservedObject var memberData = MemberData()
+struct ActivityIndicatorView: UIViewRepresentable {
+    @Binding var isAnimating: Bool
+    let style: UIActivityIndicatorView.Style
     
-    var body: some View {
-        NavigationView {
-            List {
-                // 1. Members
-                ForEach(memberData.members) { member in
-                    MembersListCell(member: member)
-                }
-                
-                // 2. Activity Indicator. Last element of list.
-                // Show activity spinner if backend has more data.
-                // Its onAppear method is used to load new members. Pagination done.
-                if memberData.membersListFull == false {
-                    ActivityIndicator()
-                    .onAppear {
-                        memberData.fetchMembers()
-                    }
-                }
-            }
-            .navigationBarTitle("Members")
-        }
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicatorView>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView(style: style)
+    }
+    
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicatorView>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }
-*/
-

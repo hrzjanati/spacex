@@ -25,15 +25,11 @@ extension Home {
             provider.fetchDataFromLaunchWebService { doc , lastPage in
                 self.launchsListFull = lastPage
                 if !lastPage {
-                    withAnimation(.easeInOut) {
+                    withAnimation() {
                         self.docsModel.append(contentsOf: doc)
                     }
-                   
                 }
             }
-        
         }
-        
     }
 }
-

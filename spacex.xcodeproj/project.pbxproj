@@ -30,6 +30,10 @@
 		4F62126E28BF9AE9000D68D3 /* APIRequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126D28BF9AE9000D68D3 /* APIRequestProvider.swift */; };
 		4F62127028BF9B3F000D68D3 /* Home+Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F62126F28BF9B3F000D68D3 /* Home+Json.swift */; };
 		4F62127328BFA2CA000D68D3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4F62127228BFA2CA000D68D3 /* Swinject */; };
+		4F9A391228C6226E00156EDF /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A391128C6226E00156EDF /* Details.swift */; };
+		4FD54A3C28C60E8900FDD20F /* SpaceX.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FD54A3A28C60E8900FDD20F /* SpaceX.xcdatamodeld */; };
+		4FD54A3E28C60EF800FDD20F /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD54A3D28C60EF800FDD20F /* PersistenceController.swift */; };
+		4FD54A4028C60F3600FDD20F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD54A3F28C60F3600FDD20F /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		4F62126A28BF99A6000D68D3 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		4F62126D28BF9AE9000D68D3 /* APIRequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProvider.swift; sourceTree = "<group>"; };
 		4F62126F28BF9B3F000D68D3 /* Home+Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home+Json.swift"; sourceTree = "<group>"; };
+		4F9A391128C6226E00156EDF /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
+		4FD54A3B28C60E8900FDD20F /* SpaceX.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SpaceX.xcdatamodel; sourceTree = "<group>"; };
+		4FD54A3D28C60EF800FDD20F /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		4FD54A3F28C60F3600FDD20F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,7 @@
 			children = (
 				4F62124328BF8AA9000D68D3 /* Resources */,
 				4F62124928BF8B6B000D68D3 /* Network */,
+				4FD54A3928C60E2A00FDD20F /* DataBase */,
 				4F62127428BFA39B000D68D3 /* DI */,
 				4F48504E28C37B5E0090AF64 /* Utils */,
 				4F62124428BF8AC1000D68D3 /* UI */,
@@ -198,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				4F62124528BF8ACB000D68D3 /* Home */,
+				4F9A390E28C6224600156EDF /* Details */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -266,6 +276,24 @@
 				4F48504328C358B60090AF64 /* DependecyInjector.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		4F9A390E28C6224600156EDF /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4F9A391128C6226E00156EDF /* Details.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		4FD54A3928C60E2A00FDD20F /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				4FD54A3F28C60F3600FDD20F /* CoreDataManager.swift */,
+				4FD54A3D28C60EF800FDD20F /* PersistenceController.swift */,
+				4FD54A3A28C60E8900FDD20F /* SpaceX.xcdatamodeld */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,15 +442,19 @@
 				4F62121728BF8858000D68D3 /* spacexApp.swift in Sources */,
 				4F48504A28C363A80090AF64 /* CellLaunch.swift in Sources */,
 				4F48504728C35A5F0090AF64 /* HomeProvide.swift in Sources */,
+				4FD54A4028C60F3600FDD20F /* CoreDataManager.swift in Sources */,
 				4F62126728BF9689000D68D3 /* HomeViewModel.swift in Sources */,
 				4F48505028C37B780090AF64 /* KFVIew.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
+				4F9A391228C6226E00156EDF /* Details.swift in Sources */,
 				4F62125128BF8C91000D68D3 /* Home.swift in Sources */,
+				4FD54A3E28C60EF800FDD20F /* PersistenceController.swift in Sources */,
 				4F62127028BF9B3F000D68D3 /* Home+Json.swift in Sources */,
 				4F62126B28BF99A6000D68D3 /* APIError.swift in Sources */,
 				4F48504428C358B60090AF64 /* DependecyInjector.swift in Sources */,
 				4F62124D28BF8BE2000D68D3 /* CancelBag.swift in Sources */,
 				4F62124F28BF8C07000D68D3 /* ReachabilityNetwork.swift in Sources */,
+				4FD54A3C28C60E8900FDD20F /* SpaceX.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +824,19 @@
 			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		4FD54A3A28C60E8900FDD20F /* SpaceX.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4FD54A3B28C60E8900FDD20F /* SpaceX.xcdatamodel */,
+			);
+			currentVersion = 4FD54A3B28C60E8900FDD20F /* SpaceX.xcdatamodel */;
+			path = SpaceX.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4F62120B28BF8858000D68D3 /* Project object */;
 }

@@ -14,10 +14,10 @@ public protocol APISpaceXClinetProtocol: AnyObject {
     func capsules() -> AnyPublisher<Result<Array<SpaceXCapsule>, AFError>, Never>
     func launch(pageNumber : Int) -> AnyPublisher<Result<SpaceXLaunch, AFError>, Never>
 }
-
+//MARK: - Class APIReqProvider
 public final class APIRequestProvider {
     let jsonDecoder = JSONDecoder()
-    let retryLimit = 5
+    let retryLimit = 20
     public func performCombineRequest<T: Decodable>(route: APIRouter,interceptor: RequestInterceptor? = nil, decoder: JSONDecoder = JSONDecoder()) -> AnyPublisher<Result<T, AFError>, Never> {
         return AF.request(route, interceptor: interceptor ?? self).publishDecodable(type: T.self, decoder: decoder).result()
         
@@ -49,7 +49,6 @@ extension APIRequestProvider : APISpaceXClinetProtocol {
 }
 //MARK: - Interceptor
 extension APIRequestProvider : RequestInterceptor {
-    
     public func retry(_ request: Request, for session: Session, dueTo error: Error,
                       completion: @escaping (RetryResult) -> Void) {
         guard let statusCode = request.response?.statusCode else {

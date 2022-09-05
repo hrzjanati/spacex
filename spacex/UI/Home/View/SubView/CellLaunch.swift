@@ -14,6 +14,9 @@ struct CellLaunch: View {
     @State var success : Bool
     @State var details : String
     @State var smallImageLink : String
+    @State var flightNumber : String
+    @State var launchTime : String
+    var id : UUID
     
     var body: some View {
         ZStack {
@@ -30,10 +33,17 @@ struct CellLaunch: View {
                 .padding(.horizontal)
                 Spacer()
             }//Vstack
-            .frame( height: 250, alignment: .center)
+            .frame( height: 300, alignment: .center)
             .cornerRadius(10.0)
             rockets
         }
+//        .onAppear {
+//            let idsArray = CoreDataManager.shared.fetchBookMarkID()
+//            if let item = idsArray.first(where: { $0.idUUID ==  id }) {
+//               // do something
+//               print(item)
+//            }
+//        }
     }
     
     
@@ -50,6 +60,14 @@ struct CellLaunch: View {
         VStack (alignment: .leading){
             Text(name)
                 .font(.title2)
+            if flightNumber == "0" {
+                Text("flightNumber Null")
+                    .font(.caption)
+            }else {
+                Text(flightNumber)
+                    .font(.caption)
+            }
+           
             Text(details)
                 .font(.caption)
                 .foregroundColor(Color.gray)
@@ -60,13 +78,27 @@ struct CellLaunch: View {
     private var righteDetails : some View {
         VStack(alignment: .trailing) {
             Spacer()
-            Text("lunch date")
+            Text(launchTime)
             if success {
                 Image(systemName: "checkmark.square.fill")
                     .foregroundColor(Color.green)
             }else {
                 Image(systemName: "xmark.square.fill")
                     .foregroundColor(Color.red)
+            }
+            Button {
+                print("Tapped book mark")
+                CoreDataManager.shared.addIDInCoreData(id: id)
+                print(id)
+            } label: {
+            
+                
+              
+                 //   Image(systemName: "bookmark.fill")
+             
+                    Image(systemName: "bookmark")
+                
+               
             }
         }
     }// righteDetails
@@ -83,9 +115,10 @@ struct CellLaunch: View {
 
 
 
-struct CellLaunch_Previews: PreviewProvider {
-    static var previews: some View {
-        CellLaunch(name: "test name", success: true , details: "ast launch of the original Falcon 9 v1.0 launch vehicle", smallImageLink: "https://images2.imgbox.com/95/39/sRqN7rsv_o.png")
-            .previewLayout(.sizeThatFits)
-    }
-}
+//struct CellLaunch_Previews: PreviewProvider {
+//    let uuid = NSUUID()
+//    static var previews: some View {
+//        CellLaunch(name: "test name", success: true , details: "ast launch of the original Falcon 9 v1.0 launch vehicle", smallImageLink: "https://images2.imgbox.com/95/39/sRqN7rsv_o.png", flightNumber: "23", launchTime: "232434", id: UUID)
+//            .previewLayout(.sizeThatFits)
+//    }
+//}
