@@ -28,7 +28,7 @@ struct Details: View {
                 
             }
                 Form {
-                    Section(header: Text("Aboute")) {
+                    Section(header: Text("About")) {
                         Text(name)
                     }
                     

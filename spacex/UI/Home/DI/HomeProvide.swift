@@ -9,8 +9,8 @@ import Foundation
 
 protocol HomeProviding {
     var docs : [Doc] { get }
-    var launchsListFull : Bool { get }
-    func fetchDataFromLaunchWebService(complition : @escaping (([Doc],Bool) -> Void))
+    var launchListFull : Bool { get }
+    func fetchDataFromLaunchWebService(compilation : @escaping (([Doc],Bool) -> Void))
 }
 
 class HomeProvider: HomeProviding {
@@ -23,13 +23,13 @@ class HomeProvider: HomeProviding {
         return [Doc]()
     }
     
-    var launchsListFull: Bool {
+    var launchListFull: Bool {
         get {
             return false
         }
        
     }
-    func fetchDataFromLaunchWebService(complition : @escaping (([Doc],Bool) -> Void)) {
+    func fetchDataFromLaunchWebService(compilation : @escaping (([Doc],Bool) -> Void)) {
        
         APIRequestProvider().launch(pageNumber: currentPage)
             .receive(on: DispatchQueue.main)
@@ -41,10 +41,10 @@ class HomeProvider: HomeProviding {
                     perPage = data.totalPages
                    
                     if currentPage < perPage {
-                        complition(data.docs,false)
+                        compilation(data.docs,false)
                         currentPage += 1
                     }else {
-                        complition(data.docs,true)
+                        compilation(data.docs,true)
                     }
                    
                 case .failure(let error):

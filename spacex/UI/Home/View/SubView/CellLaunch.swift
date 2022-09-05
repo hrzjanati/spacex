@@ -10,12 +10,12 @@ import SwiftUI
 
 struct CellLaunch: View {
     
-    @State var name : String
-    @State var success : Bool
-    @State var details : String
-    @State var smallImageLink : String
-    @State var flightNumber : String
-    @State var launchTime : String
+    var name : String
+    var success : Bool
+    var details : String
+    var smallImageLink : String
+    var flightNumber : String
+    var launchTime : String
     var id : UUID
     
     var body: some View {
@@ -27,7 +27,7 @@ struct CellLaunch: View {
                 HStack {
                     leftDetails
                     Spacer()
-                    righteDetails
+                    rightDetails
                     
                 }//Hstack
                 .padding(.horizontal)
@@ -37,13 +37,13 @@ struct CellLaunch: View {
             .cornerRadius(10.0)
             rockets
         }
-//        .onAppear {
-//            let idsArray = CoreDataManager.shared.fetchBookMarkID()
-//            if let item = idsArray.first(where: { $0.idUUID ==  id }) {
-//               // do something
-//               print(item)
-//            }
-//        }
+        //        .onAppear {
+        //            let idsArray = CoreDataManager.shared.fetchBookMarkID()
+        //            if let item = idsArray.first(where: { $0.idUUID ==  id }) {
+        //               // do something
+        //               print(item)
+        //            }
+        //        }
     }
     
     
@@ -67,15 +67,15 @@ struct CellLaunch: View {
                 Text(flightNumber)
                     .font(.caption)
             }
-           
+            
             Text(details)
                 .font(.caption)
                 .foregroundColor(Color.gray)
             Spacer()
-          
+            
         }
     }//left details
-    private var righteDetails : some View {
+    private var rightDetails : some View {
         VStack(alignment: .trailing) {
             Spacer()
             Text(launchTime)
@@ -91,17 +91,17 @@ struct CellLaunch: View {
                 CoreDataManager.shared.addIDInCoreData(id: id)
                 print(id)
             } label: {
-            
                 
-              
-                 //   Image(systemName: "bookmark.fill")
-             
-                    Image(systemName: "bookmark")
                 
-               
+                
+                //   Image(systemName: "bookmark.fill")
+                
+                Image(systemName: "bookmark")
+                
+                
             }
         }
-    }// righteDetails
+    }// rightDetails
     private var rockets : some View {
         HStack {
             Spacer()

@@ -20,13 +20,13 @@ struct KFView: View {
             .fade(duration: 1)
             .resizable()
             .frame(maxWidth: width , maxHeight: height)
-//            .background (
-//                KFImage.url(URL(string: URLStr))
-//                    .resizable()
-//                    .frame(maxWidth: .infinity , maxHeight: .infinity)
-//                    .blur(radius: 60)
-//                    .opacity(0.75)
-//            )
+            .background (
+                KFImage.url(URL(string: URLStr))
+                    .resizable()
+                    .frame(maxWidth: .infinity , maxHeight: .infinity)
+                    .blur(radius: 60)
+                    .opacity(0.75)
+            )
     }
     private var scale: CGFloat {
            UIScreen.main.scale

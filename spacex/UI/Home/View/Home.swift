@@ -26,7 +26,7 @@ struct Home: View {
                      }
                      .buttonStyle(PlainButtonStyle())
                  } // ForEach
-                 if vm.launchsListFull == false {
+                 if vm.launchListFull == false {
                      HStack {
                          Spacer()
                          ActivityIndicatorView(isAnimating: .constant(true), style: .large)

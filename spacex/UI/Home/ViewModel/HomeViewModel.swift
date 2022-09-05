@@ -14,16 +14,16 @@ extension Home {
         
         private var provider: HomeProviding = Resolver.shared.resolve(HomeProviding.self)
         @Published var docsModel : [Doc]
-        @Published var launchsListFull : Bool
+        @Published var launchListFull : Bool
     
         init() {
             self.docsModel = provider.docs
-            self.launchsListFull = provider.launchsListFull
+            self.launchListFull = provider.launchListFull
         }
     
         func fetchDocs() {
             provider.fetchDataFromLaunchWebService { doc , lastPage in
-                self.launchsListFull = lastPage
+                self.launchListFull = lastPage
                 if !lastPage {
                     withAnimation() {
                         self.docsModel.append(contentsOf: doc)
