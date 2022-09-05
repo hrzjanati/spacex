@@ -15,7 +15,7 @@ struct Home: View {
         NavigationView {
              List {
                  ForEach(vm.docsModel) { launch in
-                     NavigationLink(destination: Details(name: launch.name ?? "Name is null", urlLargeImage: "\(launch.links.patch.large)", wikiLinkStr: "https://www.figma.com/file/7A9mC4aW7us8Gg583quCs0/PalPhone?node-id=97%3A20028")) {
+                     NavigationLink(destination: Details(name: launch.name ?? "Name is null", Description: launch.details ?? "This mission no Description", urlLargeImage: "\(launch.links.patch.large)", wikiLinkStr: launch.links.wikipedia ?? "null")) {
                          CellLaunch(name: launch.name ?? "Name is null" ,
                                     success: launch.success ?? false,
                                     details: launch.details ?? "" ,

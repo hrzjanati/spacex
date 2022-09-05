@@ -11,6 +11,7 @@ struct Details: View {
     
  
     var name : String
+    var Description : String
     var urlLargeImage: String
     var wikiLinkStr : String
     
@@ -31,13 +32,19 @@ struct Details: View {
                         Text(name)
                     }
                     
-                    Section(header: Text("Wiki")) {
-                        Link(destination: URL(string: "https://www.figma.com/file/7A9mC4aW7us8Gg583quCs0/PalPhone?node-id=97%3A20028")!) {
-                            Image(systemName: "link")
-                                .foregroundColor(Color.blue)
-                        }
-                        
+                    Section(header: Text("Description")) {
+                        Text(Description)
                     }
+                    if wikiLinkStr != "null" {
+                        Section(header: Text("Wiki")) {
+                            Link(destination: URL(string: wikiLinkStr)!) {
+                                Image(systemName: "link")
+                                    .foregroundColor(Color.blue)
+                            }
+                            
+                        }
+                    }
+                 
                 }
          
         }
@@ -52,6 +59,6 @@ struct Details: View {
 
 struct Details_Previews: PreviewProvider {
     static var previews: some View {
-        Details(name: "Hossein", urlLargeImage: "https://images2.imgbox.com/60/48/jFYGyCf9_o.png", wikiLinkStr: "")
+        Details(name: "Hossein", Description: "tetst", urlLargeImage: "https://images2.imgbox.com/60/48/jFYGyCf9_o.png", wikiLinkStr: "")
     }
 }

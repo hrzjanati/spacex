@@ -110,11 +110,13 @@ struct Links: Codable {
     let presskit: String?
     let youtubeID: String?
     let article: String?
+    let wikipedia: String?
     
     enum CodingKeys: String, CodingKey {
         case patch, reddit, flickr, presskit
         case youtubeID
         case article
+        case wikipedia
     }
 }
 
