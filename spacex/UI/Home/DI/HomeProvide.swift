@@ -7,30 +7,46 @@
 
 import Foundation
 
-
 protocol HomeProviding {
-    var docs : [Doc] { get  }
-    func fetchDataFromGeneralWebService(complition : @escaping (([Doc]) -> Void))
+    var docs : [Doc] { get }
+    var launchsListFull : Bool { get }
+    func fetchDataFromLaunchWebService(complition : @escaping (([Doc],Bool) -> Void))
 }
-
 
 class HomeProvider: HomeProviding {
     
     private let cancelBag = CancelBag()
-    
+    private var currentPage = 0
+    private var perPage : Int = 0
+    private var fullPAge : Bool = false
     var docs: [Doc] {
-            return [Doc]()
+        return [Doc]()
     }
     
-     func fetchDataFromGeneralWebService(complition : @escaping (([Doc]) -> Void)) {
-        APIRequestProvider().launchHossine()
+    var launchsListFull: Bool {
+        get {
+            return false
+        }
+       
+    }
+    func fetchDataFromLaunchWebService(complition : @escaping (([Doc],Bool) -> Void)) {
+       
+        APIRequestProvider().launch(pageNumber: currentPage)
             .receive(on: DispatchQueue.main)
             .sink { _ in
-            } receiveValue: { result in
+            } receiveValue: { [self] result in
                 switch result {
                 case .success(let data):
                     print(data)
-                    complition(data.docs)
+                    perPage = data.totalPages
+                   
+                    if currentPage < perPage {
+                        complition(data.docs,false)
+                        currentPage += 1
+                    }else {
+                        complition(data.docs,true)
+                    }
+                   
                 case .failure(let error):
 #if DEBUG
                     print(error)

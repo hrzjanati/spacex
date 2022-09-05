@@ -10,11 +10,10 @@ import Foundation
 // MARK: - SpaceXLaunch
 public struct SpaceXLaunch: Codable {
     let docs: [Doc]
-    let totalDocs, offset, limit, totalPages: Int
+    let totalDocs, limit, totalPages: Int
+    let offset : Int?
     let page, pagingCounter: Int
     let hasPrevPage, hasNextPage: Bool
-    let prevPage: JSONNull?
-    let nextPage: Int
 }
 
 // MARK: - Doc
@@ -24,14 +23,12 @@ struct Doc: Codable , Identifiable {
     let staticFireDateUTC: String?
     let staticFireDateUnix: Int?
     let net: Bool
-    let window: Int
-    let rocket: Rocket
-    let success: Bool
+    let window: Int?
+    let success: Bool?
     let failures: [Failure]
     let details: String?
     let crew: [JSONAny]
     let ships, capsules, payloads: [String]
-    let launchpad: Launchpad
     let flightNumber: Int?
     let name, dateUTC: String?
     let dateUnix: Int?
@@ -43,12 +40,14 @@ struct Doc: Codable , Identifiable {
     let tbd: Bool
     let launchLibraryID: JSONNull?
     let id = UUID()
-
+    
     enum CodingKeys: String, CodingKey {
         case fairings, links
         case staticFireDateUTC
         case staticFireDateUnix
-        case net, window, rocket, success, failures, details, crew, ships, capsules, payloads, launchpad
+        case net, window
+        case success
+        case failures, details, crew, ships, capsules, payloads
         case flightNumber
         case name
         case dateUTC
@@ -69,14 +68,14 @@ struct Core: Codable {
     let flight: Int
     let gridfins, legs, reused: Bool
     let landingAttempt: Bool?
-    let landingSuccess, landingType, landpad: JSONNull?
-
+    let landingSuccess, landingType : JSONNull?
+    
     enum CodingKeys: String, CodingKey {
         case core, flight, gridfins, legs, reused
         case landingAttempt
         case landingSuccess
         case landingType
-        case landpad
+        
     }
 }
 
@@ -95,17 +94,12 @@ struct Failure: Codable {
 struct Fairings: Codable {
     let reused, recoveryAttempt, recovered: Bool?
     let ships: [JSONAny]
-
+    
     enum CodingKeys: String, CodingKey {
         case reused
         case recoveryAttempt
         case recovered, ships
     }
-}
-
-enum Launchpad: String, Codable {
-    case the5E9E4501F509094Ba4566F84 = "5e9e4501f509094ba4566f84"
-    case the5E9E4502F5090995De566F86 = "5e9e4502f5090995de566f86"
 }
 
 // MARK: - Links
@@ -114,15 +108,13 @@ struct Links: Codable {
     let reddit: Reddit
     let flickr: Flickr
     let presskit: String?
-    let webcast: String
     let youtubeID: String?
-    let article: String
-    let wikipedia: String
-
+    let article: String?
+    
     enum CodingKeys: String, CodingKey {
-        case patch, reddit, flickr, presskit, webcast
+        case patch, reddit, flickr, presskit
         case youtubeID
-        case article, wikipedia
+        case article
     }
 }
 
@@ -136,15 +128,11 @@ struct Patch: Codable {
 }
 // MARK: - Reddit
 struct Reddit: Codable {
-    let campaign: JSONNull?
+    
     let launch: String?
-    let media, recovery: JSONNull?
+    
 }
 
-enum Rocket: String, Codable {
-    case the5E9D0D95Eda69955F709D1Eb = "5e9d0d95eda69955f709d1eb"
-    case the5E9D0D95Eda69973A809D1Ec = "5e9d0d95eda69973a809d1ec"
-}
 
 // MARK: - Helper functions for creating encoders and decoders
 func newJSONDecoder() -> JSONDecoder {
@@ -165,24 +153,24 @@ func newJSONEncoder() -> JSONEncoder {
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {
-
+    
     public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
         return true
     }
-
+    
     public var hashValue: Int {
         return 0
     }
-
+    
     public init() {}
-
+    
     public required init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if !container.decodeNil() {
             throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
         }
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encodeNil()
@@ -191,38 +179,38 @@ class JSONNull: Codable, Hashable {
 
 class JSONCodingKey: CodingKey {
     let key: String
-
+    
     required init?(intValue: Int) {
         return nil
     }
-
+    
     required init?(stringValue: String) {
         key = stringValue
     }
-
+    
     var intValue: Int? {
         return nil
     }
-
+    
     var stringValue: String {
         return key
     }
 }
 
 class JSONAny: Codable {
-
+    
     let value: Any
-
+    
     static func decodingError(forCodingPath codingPath: [CodingKey]) -> DecodingError {
         let context = DecodingError.Context(codingPath: codingPath, debugDescription: "Cannot decode JSONAny")
         return DecodingError.typeMismatch(JSONAny.self, context)
     }
-
+    
     static func encodingError(forValue value: Any, codingPath: [CodingKey]) -> EncodingError {
         let context = EncodingError.Context(codingPath: codingPath, debugDescription: "Cannot encode JSONAny")
         return EncodingError.invalidValue(value, context)
     }
-
+    
     static func decode(from container: SingleValueDecodingContainer) throws -> Any {
         if let value = try? container.decode(Bool.self) {
             return value
@@ -241,7 +229,7 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-
+    
     static func decode(from container: inout UnkeyedDecodingContainer) throws -> Any {
         if let value = try? container.decode(Bool.self) {
             return value
@@ -268,7 +256,7 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-
+    
     static func decode(from container: inout KeyedDecodingContainer<JSONCodingKey>, forKey key: JSONCodingKey) throws -> Any {
         if let value = try? container.decode(Bool.self, forKey: key) {
             return value
@@ -295,7 +283,7 @@ class JSONAny: Codable {
         }
         throw decodingError(forCodingPath: container.codingPath)
     }
-
+    
     static func decodeArray(from container: inout UnkeyedDecodingContainer) throws -> [Any] {
         var arr: [Any] = []
         while !container.isAtEnd {
@@ -304,7 +292,7 @@ class JSONAny: Codable {
         }
         return arr
     }
-
+    
     static func decodeDictionary(from container: inout KeyedDecodingContainer<JSONCodingKey>) throws -> [String: Any] {
         var dict = [String: Any]()
         for key in container.allKeys {
@@ -313,7 +301,7 @@ class JSONAny: Codable {
         }
         return dict
     }
-
+    
     static func encode(to container: inout UnkeyedEncodingContainer, array: [Any]) throws {
         for value in array {
             if let value = value as? Bool {
@@ -337,7 +325,7 @@ class JSONAny: Codable {
             }
         }
     }
-
+    
     static func encode(to container: inout KeyedEncodingContainer<JSONCodingKey>, dictionary: [String: Any]) throws {
         for (key, value) in dictionary {
             let key = JSONCodingKey(stringValue: key)!
@@ -362,7 +350,7 @@ class JSONAny: Codable {
             }
         }
     }
-
+    
     static func encode(to container: inout SingleValueEncodingContainer, value: Any) throws {
         if let value = value as? Bool {
             try container.encode(value)
@@ -378,7 +366,7 @@ class JSONAny: Codable {
             throw encodingError(forValue: value, codingPath: container.codingPath)
         }
     }
-
+    
     public required init(from decoder: Decoder) throws {
         if var arrayContainer = try? decoder.unkeyedContainer() {
             self.value = try JSONAny.decodeArray(from: &arrayContainer)
@@ -389,7 +377,7 @@ class JSONAny: Codable {
             self.value = try JSONAny.decode(from: container)
         }
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         if let arr = self.value as? [Any] {
             var container = encoder.unkeyedContainer()
