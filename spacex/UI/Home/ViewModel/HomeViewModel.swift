@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftUI
 
 extension Home {
     class ViewModel : ObservableObject {
@@ -24,7 +25,10 @@ extension Home {
             provider.fetchDataFromLaunchWebService { doc , lastPage in
                 self.launchsListFull = lastPage
                 if !lastPage {
-                    self.docsModel.append(contentsOf: doc)
+                    withAnimation(.easeInOut) {
+                        self.docsModel.append(contentsOf: doc)
+                    }
+                   
                 }
             }
         
