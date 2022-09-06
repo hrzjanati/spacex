@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Details: View {
     
+    @StateObject private var vm : ViewModel = Resolver.shared.resolve(ViewModel.self)
     @EnvironmentObject var favorites : BookMarkID
     
     var name : String
@@ -29,18 +30,16 @@ struct Details: View {
                 
             }
             Form {
-                Section(header: Text("About")) {
+                Section(header: Text(vm.headerAbout)) {
                     HStack {
                         Text(name)
-                   
                     }
                 }
-                
-                Section(header: Text("Description")) {
+                Section(header: Text(vm.Description)) {
                     Text(Description)
                 }
                 if wikiLinkStr != "null" {
-                    Section(header: Text("wikipedia")) {
+                    Section(header: Text(vm.wikipedia)) {
                         Link(destination: URL(string: wikiLinkStr)!) {
                             Image(systemName: "link")
                                 .foregroundColor(Color.blue)
@@ -48,8 +47,7 @@ struct Details: View {
                         
                     }
                 }
-                
-                Section(header: Text("BookMark")) {
+                Section(header: Text(vm.BookMark)) {
                     Button(favorites.contains(id) ? "Remove frome Bookmark" : "Add to Bookmark") {
                         if self.favorites.contains(id) {
                             self.favorites.remove(id)

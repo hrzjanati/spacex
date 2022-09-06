@@ -46,6 +46,7 @@ class HomeProvider: HomeProviding {
     var defaultName: String {
         return "Name Is Null"
     }
+    
     var defaultDetails: String {
         return "This mission has no description"
     }

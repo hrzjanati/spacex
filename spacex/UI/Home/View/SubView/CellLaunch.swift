@@ -42,7 +42,6 @@ struct CellLaunch: View {
         }
     }
     
-    
     private var imageShip : some View {
         ZStack {
             Image("spaceX")
@@ -51,7 +50,6 @@ struct CellLaunch: View {
                 .cornerRadius(5)
         }
     }//imageship
-    
     private var leftDetails : some View {
         VStack (alignment: .leading){
             Text(name)
@@ -103,13 +101,3 @@ struct CellLaunch: View {
         }
     }
 }
-
-
-
-//struct CellLaunch_Previews: PreviewProvider {
-//    let uuid = NSUUID()
-//    static var previews: some View {
-//        CellLaunch(name: "test name", success: true , details: "ast launch of the original Falcon 9 v1.0 launch vehicle", smallImageLink: "https://images2.imgbox.com/95/39/sRqN7rsv_o.png", flightNumber: "23", launchTime: "232434", id: UUID)
-//            .previewLayout(.sizeThatFits)
-//    }
-//}

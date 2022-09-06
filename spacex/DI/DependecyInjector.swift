@@ -46,5 +46,12 @@ private func DIContainer() -> Container {
         BookMarkID()
     }.inObjectScope(.container)
     
+    container.register(DetailsProviding.self) { _ in
+        DetailsProvider()
+    }
+    container.register(Details.ViewModel.self) { _ in
+        Details.ViewModel()
+    }.inObjectScope(.container)
+    
     return container
 }

@@ -10,8 +10,7 @@ import SwiftUI
 struct Home: View {
     
     @StateObject private var vm : ViewModel = Resolver.shared.resolve(ViewModel.self)
-    @ObservedObject var favorites : BookMarkID = Resolver.shared.resolve(BookMarkID.self)
-    
+    @ObservedObject var bookMark : BookMarkID = Resolver.shared.resolve(BookMarkID.self)
     var body: some View {
         NavigationView {
             List {
@@ -59,7 +58,7 @@ struct Home: View {
                 }
             }
         }//NavigationView
-        .environmentObject(favorites)
+        .environmentObject(bookMark)
     }
     
 }

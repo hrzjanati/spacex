@@ -10,6 +10,7 @@
 		4F461BA228C7391C00C716E3 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F461BA128C7391C00C716E3 /* DetailsViewModel.swift */; };
 		4F461BDF28C7433000C716E3 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F461BDE28C7433000C716E3 /* BookMark.swift */; };
 		4F461BE128C7457600C716E3 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F461BE028C7457600C716E3 /* ActivityIndicatorView.swift */; };
+		4F461BE428C7722B00C716E3 /* DetailsProvide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F461BE328C7722A00C716E3 /* DetailsProvide.swift */; };
 		4F48504428C358B60090AF64 /* DependecyInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504328C358B60090AF64 /* DependecyInjector.swift */; };
 		4F48504728C35A5F0090AF64 /* HomeProvide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504628C35A5F0090AF64 /* HomeProvide.swift */; };
 		4F48504A28C363A80090AF64 /* CellLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F48504928C363A80090AF64 /* CellLaunch.swift */; };
@@ -60,6 +61,7 @@
 		4F461BA128C7391C00C716E3 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		4F461BDE28C7433000C716E3 /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
 		4F461BE028C7457600C716E3 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4F461BE328C7722A00C716E3 /* DetailsProvide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsProvide.swift; sourceTree = "<group>"; };
 		4F48504328C358B60090AF64 /* DependecyInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependecyInjector.swift; sourceTree = "<group>"; };
 		4F48504628C35A5F0090AF64 /* HomeProvide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProvide.swift; sourceTree = "<group>"; };
 		4F48504928C363A80090AF64 /* CellLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellLaunch.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 				4F461BA128C7391C00C716E3 /* DetailsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4F461BE228C770DE00C716E3 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				4F461BE328C7722A00C716E3 /* DetailsProvide.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		4F48504528C35A460090AF64 /* DI */ = {
@@ -306,6 +316,7 @@
 			children = (
 				4F461B9F28C719EE00C716E3 /* View */,
 				4F461BA028C7390000C716E3 /* ViewModel */,
+				4F461BE228C770DE00C716E3 /* DI */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -473,6 +484,7 @@
 				4F48505028C37B780090AF64 /* KFVIew.swift in Sources */,
 				4F62124B28BF8B91000D68D3 /* APIConfiguration.swift in Sources */,
 				4F9A391228C6226E00156EDF /* Details.swift in Sources */,
+				4F461BE428C7722B00C716E3 /* DetailsProvide.swift in Sources */,
 				4F62125128BF8C91000D68D3 /* Home.swift in Sources */,
 				4FD54A3E28C60EF800FDD20F /* PersistenceController.swift in Sources */,
 				4F62127028BF9B3F000D68D3 /* Capsul+Json.swift in Sources */,

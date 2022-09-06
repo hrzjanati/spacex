@@ -10,10 +10,20 @@ import Foundation
 extension Details {
     class ViewModel : ObservableObject {
         
+        private var provider: DetailsProviding = Resolver.shared.resolve(DetailsProviding.self)
         
+        @Published var headerAbout : String
+        @Published var Description : String
+        @Published var wikipedia   : String
+        @Published var BookMark    :  String
         
-        
-        
+        init() {
+            self.headerAbout = provider.headerStr
+            self.Description = provider.Description
+            self.wikipedia   = provider.wikipedia
+            self.BookMark    = provider.BookMark
+            
+        }
     }
 }
 

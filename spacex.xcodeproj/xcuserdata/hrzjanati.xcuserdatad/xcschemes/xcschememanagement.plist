@@ -114,26 +114,44 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>2</integer>
 		</dict>
 		<key>Sample-iOS (Playground) 2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>3</integer>
 		</dict>
 		<key>Sample-iOS (Playground).xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>16</integer>
+			<integer>0</integer>
 		</dict>
 		<key>spacex.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4F62121228BF8858000D68D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F62122228BF885A000D68D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F62122C28BF885A000D68D3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
