@@ -42,5 +42,9 @@ private func DIContainer() -> Container {
         Home.ViewModel()
     }.inObjectScope(.container)
     
+    container.register(BookMarkID.self) { _ in
+        BookMarkID()
+    }.inObjectScope(.container)
+    
     return container
 }

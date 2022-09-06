@@ -10,13 +10,16 @@ import SwiftUI
 
 struct CellLaunch: View {
     
+    @EnvironmentObject var favorites : BookMarkID
+    
     var name : String
     var success : Bool
     var details : String
     var smallImageLink : String
     var flightNumber : String
     var launchTime : String
-    var id : String
+    var isBookMark : Bool
+    var  id : String
     
     var body: some View {
         ZStack {
@@ -37,13 +40,6 @@ struct CellLaunch: View {
             .cornerRadius(10.0)
             rockets
         }
-        //        .onAppear {
-        //            let idsArray = CoreDataManager.shared.fetchBookMarkID()
-        //            if let item = idsArray.first(where: { $0.idUUID ==  id }) {
-        //               // do something
-        //               print(item)
-        //            }
-        //        }
     }
     
     
@@ -86,19 +82,14 @@ struct CellLaunch: View {
                 Image(systemName: "xmark.square.fill")
                     .foregroundColor(Color.red)
             }
-            Button {
-                print("Tapped book mark")
-               // CoreDataManager.shared.addIDInCoreData(id: id)
-                print(id)
-            } label: {
+       
                 
-                
-                
-                //   Image(systemName: "bookmark.fill")
-                
+            if self.favorites.contains(id) {
+                Image(systemName: "bookmark.fill")
+                    .accessibilityLabel(Text("this is a favorites id "))
+                    .foregroundColor(.red)
+            }else {
                 Image(systemName: "bookmark")
-                
-                
             }
         }
     }// rightDetails

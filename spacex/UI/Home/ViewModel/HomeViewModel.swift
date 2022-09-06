@@ -13,12 +13,21 @@ extension Home {
     class ViewModel : ObservableObject {
         
         private var provider: HomeProviding = Resolver.shared.resolve(HomeProviding.self)
+        
         @Published var docsModel : [Doc]
         @Published var launchListFull : Bool
-    
+        @Published var navigationBarString : String
+        @Published var lasPageString : String
+        @Published var defaultNameLaunch : String
+        @Published var defaultDetails : String
+        
         init() {
             self.docsModel = provider.docs
             self.launchListFull = provider.launchListFull
+            self.navigationBarString = provider.navigationString
+            self.lasPageString = provider.strForLastPage
+            self.defaultNameLaunch = provider.defaultName
+            self.defaultDetails = provider.defaultDetails
         }
     
         func fetchDocs() {

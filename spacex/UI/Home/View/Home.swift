@@ -10,42 +10,56 @@ import SwiftUI
 struct Home: View {
     
     @StateObject private var vm : ViewModel = Resolver.shared.resolve(ViewModel.self)
+    @ObservedObject var favorites : BookMarkID = Resolver.shared.resolve(BookMarkID.self)
     
     var body: some View {
         NavigationView {
-             List {
-                 ForEach(vm.docsModel) { launch in
-                     NavigationLink(destination: Details(name: launch.name ?? "Name is null", Description: launch.details ?? "This mission no Description", urlLargeImage: "\(launch.links.patch.large)", wikiLinkStr: launch.links.wikipedia ?? "null")) {
-                         CellLaunch(name: launch.name ?? "Name is null" ,
-                                    success: launch.success ?? false,
-                                    details: launch.details ?? "" ,
-                                    smallImageLink: "\(launch.links.patch.small)",
-                                    flightNumber: "\(launch.flightNumber ?? 0)" ,
-                                    launchTime: launch.dateUTC ?? "null",
-                                    id: launch.id)
-                     }
-                     .buttonStyle(PlainButtonStyle())
-                 } // ForEach
-                 if vm.launchListFull == false {
-                     HStack {
-                         Spacer()
-                         ActivityIndicatorView(isAnimating: .constant(true), style: .large)
-                         Spacer()
-                     }
-                     .onAppear {
-                         vm.fetchDocs()
-                         let ids = CoreDataManager.shared.fetchBookMarkID()
-                         print(ids)
-                     }
-                 }
-             }//List
-             .toolbar {
-                 ToolbarItem(placement: .principal) {
-                        Text("Launch")
-                         .font(.title)
-                 }
-             }
+            List {
+                ForEach(vm.docsModel) { launch in
+                    ZStack {
+                        CellLaunch(name: launch.name ?? vm.defaultNameLaunch ,
+                                   success: launch.success ?? false,
+                                   details: launch.details ?? "" ,
+                                   smallImageLink: "\(launch.links.patch.small)",
+                                   flightNumber: "\(launch.flightNumber ?? 0)" ,
+                                   launchTime: launch.dateUTC ?? "null" ,
+                                   isBookMark: false,
+                                   id: launch.id)
+                        NavigationLink(destination: Details(name: launch.name ?? vm.defaultNameLaunch,
+                                                            Description: launch.details ?? vm.defaultDetails,
+                                                            urlLargeImage: "\(launch.links.patch.large)",
+                                                            wikiLinkStr: launch.links.wikipedia ?? "null" ,
+                                                            id: launch.id)) { EmptyView() }
+                                                            .opacity(0.0)
+                        
+                    }
+
+                } // ForEach
+                if vm.launchListFull == false {
+                    HStack {
+                        Spacer()
+                        ActivityIndicatorView(isAnimating: .constant(true), style: .large)
+                        Spacer()
+                    }
+                    .onAppear {
+                        vm.fetchDocs()
+                    }
+                }else {
+                    HStack {
+                        Spacer()
+                        Text(vm.lasPageString)
+                        Spacer()
+                    }
+                }
+            }//List
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(vm.navigationBarString)
+                        .font(.title)
+                }
+            }
         }//NavigationView
+        .environmentObject(favorites)
     }
     
 }
@@ -56,15 +70,3 @@ struct Home_Previews: PreviewProvider {
     }
 }
 
-struct ActivityIndicatorView: UIViewRepresentable {
-    @Binding var isAnimating: Bool
-    let style: UIActivityIndicatorView.Style
-    
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicatorView>) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: style)
-    }
-    
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicatorView>) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
-    }
-}

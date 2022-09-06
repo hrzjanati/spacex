@@ -10,15 +10,20 @@ import Foundation
 protocol HomeProviding {
     var docs : [Doc] { get }
     var launchListFull : Bool { get }
+    var navigationString : String { get }
+    var strForLastPage : String { get }
+    var defaultName : String { get }
+    var defaultDetails : String { get }
     func fetchDataFromLaunchWebService(compilation : @escaping (([Doc],Bool) -> Void))
 }
 
 class HomeProvider: HomeProviding {
-    
+   
     private let cancelBag = CancelBag()
     private var currentPage = 0
     private var perPage : Int = 0
     private var fullPAge : Bool = false
+    
     var docs: [Doc] {
         return [Doc]()
     }
@@ -29,6 +34,22 @@ class HomeProvider: HomeProviding {
         }
        
     }
+    
+    var strForLastPage: String {
+        return "The End. 😎"
+    }
+    
+    var navigationString: String {
+        return "Launch"
+    }
+    
+    var defaultName: String {
+        return "Name Is Null"
+    }
+    var defaultDetails: String {
+        return "This mission has no description"
+    }
+    
     func fetchDataFromLaunchWebService(compilation : @escaping (([Doc],Bool) -> Void)) {
        
         APIRequestProvider().launch(pageNumber: currentPage)

@@ -14,19 +14,23 @@ struct CoreDataManager {
     static let shared = CoreDataManager()
     private var viewContext = PersistenceController.shared.container.viewContext
     
-    func addIDInCoreData(id : UUID) {
+    func addIDInCoreData(id : Set<String>) {
         let bookMarkDB = BookMark(context: self.viewContext)
-        bookMarkDB.idUUID = id
+        bookMarkDB.idArray = id
         saveContext()
     }
     
-    func fetchBookMarkID() -> [BookMark] {
-        var result = [BookMark]()
+    func fetchBookMarkID() -> Set<String> {
+        var result : Set<String>
+        result = []
         let request = NSFetchRequest<NSFetchRequestResult>(entityName:"BookMark")
         do {
             if let all = try viewContext.fetch(request) as? [BookMark] {
-                result = all
+                for item in all {
+                    result = item.idArray!
+                }
             }
+             
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
