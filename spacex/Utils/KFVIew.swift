@@ -10,11 +10,11 @@ import SwiftUI
 import Kingfisher
 
 struct KFView: View {
-   
+    
     var URLStr: String
     let width: CGFloat
     let height : CGFloat
- 
+    
     var body: some View {
         KFImage.url(URL(string: URLStr))
             .fade(duration: 1)
@@ -29,8 +29,8 @@ struct KFView: View {
             )
     }
     private var scale: CGFloat {
-           UIScreen.main.scale
-       }
+        UIScreen.main.scale
+    }
 }
 
 struct ImageRows_Previews: PreviewProvider {

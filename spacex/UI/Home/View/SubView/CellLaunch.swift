@@ -16,7 +16,7 @@ struct CellLaunch: View {
     var smallImageLink : String
     var flightNumber : String
     var launchTime : String
-    var id : UUID
+    var id : String
     
     var body: some View {
         ZStack {
@@ -88,7 +88,7 @@ struct CellLaunch: View {
             }
             Button {
                 print("Tapped book mark")
-                CoreDataManager.shared.addIDInCoreData(id: id)
+               // CoreDataManager.shared.addIDInCoreData(id: id)
                 print(id)
             } label: {
                 

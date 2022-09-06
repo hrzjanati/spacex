@@ -39,7 +39,7 @@ struct Doc: Codable , Identifiable {
     let autoUpdate: Bool?
     let tbd: Bool
     let launchLibraryID: JSONNull?
-    let id = UUID()
+    let id : String
     
     enum CodingKeys: String, CodingKey {
         case fairings, links
